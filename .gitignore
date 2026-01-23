@@ -1,1 +1,15 @@
+# Secretos locales del backend (no versionar)
 backend/.env
+
+# Archivos compilados de Python (no deben ir al repo)
+__pycache__/
+*.py[cod]
+
+# Archivos de entorno virtual si alguna vez se crean localmente
+.venv/
+venv/
+env/
+
+# Archivos del sistema/IDE que no aportan al codigo
+.DS_Store
+.vscode/
