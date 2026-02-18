@@ -1,0 +1,18 @@
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #f7f1e9 0%, #f3ebe2 35%, #efe3d5 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
