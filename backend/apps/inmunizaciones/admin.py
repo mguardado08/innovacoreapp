@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import EsquemaVacuna, Vacuna, VacunacionPaciente
+
+admin.site.register(Vacuna)
+admin.site.register(EsquemaVacuna)
+admin.site.register(VacunacionPaciente)

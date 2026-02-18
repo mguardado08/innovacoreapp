@@ -1,169 +1,179 @@
-# Modelo de dominio clínico (pediatría) - propuesta inicial
+# Modelo de dominio clinico (estado actual)
 
-Objetivo: definir el núcleo del dominio clínico pediátrico con separación clara entre expediente y consulta, evitando sobreingeniería. Este documento sirve como base para crear aplicaciones y modelos de Django.
+Este documento refleja el estado actual de los modelos implementados en `backend/apps`.
+Sirve como referencia para el backend y para el diseno del frontend.
 
-## Principios
+## Principios vigentes
 
-- Expediente clínico (paciente + antecedentes) separado de consulta médica.
-- Borrado lógico estándar en todos los modelos.
-- Validaciones clínicas claras y simples (sin abstracciones innecesarias).
-- Catálogos clínicos básicos para vacunas, exámenes y medicamentos.
+- Expediente clinico (paciente + antecedentes) separado de consulta medica.
+- Borrado logico estandar en todos los modelos clinicos.
+- Validaciones clinicas simples en el modelo (sin sobreingenieria).
+- Catalogos basicos para vacunas, examenes y medicamentos.
+- Enfoque pediatrico: edad menor o igual a 18 anos.
 
-## Aplicaciones sugeridas (por dominio)
+## Apps del dominio
 
-- `pacientes`: datos del paciente, responsables y expediente.
-- `consultas`: consultas médicas, notas, exámenes físicos y signos vitales.
-- `inmunizaciones`: vacunas aplicadas y esquema por edad.
-- `examenes`: estudios de laboratorio o gabinete.
+- `comun`: modelos base (tiempos y borrado logico).
+- `pacientes`: expediente clinico.
+- `consultas`: consulta medica y examen fisico.
+- `inmunizaciones`: vacunas y aplicaciones.
+- `examenes`: estudios de laboratorio/gabinete.
 - `recetas`: recetas y medicamentos.
-- `crecimiento`: crecimiento (mediciones y referencias).
+- `crecimiento`: mediciones y referencias.
 - `desarrollo`: hitos del desarrollo.
-- `comun`: modelos base (borrado lógico, marcas de tiempo) y utilidades clínicas.
 
 ## Modelos base (comun)
 
 - `ModeloConTiempos`: `creado_en`, `actualizado_en`.
-- `ModeloBorradoLogico`: `esta_borrado`, `borrado_en`, `borrado_por` (opcional).
-- `ModeloBaseClinico`: hereda de los anteriores para todos los modelos clínicos.
+- `ModeloBorradoLogico`: `esta_borrado`, `borrado_en`, `borrado_por`.
+- `ModeloBaseClinico`: hereda de los anteriores. Todos los modelos clinicos lo usan.
 
-## Expediente clínico (pacientes)
+Nota: el manager por defecto filtra `esta_borrado=False`.
+
+## Expediente clinico (pacientes)
 
 ### Paciente
 
-- Datos personales: `nombres`, `apellidos`, `sexo`, `fecha_nacimiento`, `curp` (opcional), `tipo_sangre` (opcional).
-- Datos perinatales: `semanas_gestacionales`, `peso_nacimiento_g`, `talla_nacimiento_cm`, `perimetro_cefalico_nacimiento_cm`, `tipo_parto` (vaginal/cesarea), `apgar_1`, `apgar_5`.
-- Datos clínicos básicos: `es_prematuro` (derivable si < 37 semanas, pero se puede persistir).
-- Estado: `activo` (para bloqueo administrativo, distinto de borrado lógico).
+Campos principales:
+- Identidad: `nombres`, `apellidos`, `sexo`, `fecha_nacimiento`, `curp`, `tipo_sangre`.
+- Perinatales: `semanas_gestacionales`, `peso_nacimiento_g`, `talla_nacimiento_cm`,
+  `perimetro_cefalico_nacimiento_cm`, `tipo_parto`, `apgar_1`, `apgar_5`.
+- Estado: `es_prematuro`, `activo`.
 
-Validaciones clínicas sugeridas:
-- `fecha_nacimiento` no puede ser futura.
-- `semanas_gestacionales` en rango 22-44 (o nulo si desconocido).
-- `peso_nacimiento_g` > 0, `talla_nacimiento_cm` > 0 si se captura.
+Validaciones en modelo:
+- `fecha_nacimiento` no futura y edad <= 18.
+- `semanas_gestacionales` en 22-44 si existe.
+- `peso_nacimiento_g` y `talla_nacimiento_cm` > 0 si existen.
 
 ### ResponsablePaciente
 
-- Relación con paciente: `paciente`.
-- Datos del responsable: `nombre_completo`, `parentesco` (madre/padre/tutor), `telefono`, `correo`, `direccion`.
-- `es_principal` para marcar contacto principal.
+- `paciente`, `nombre_completo`, `parentesco`, `telefono`, `correo`, `direccion`.
+- `es_principal` (solo uno por paciente).
 
-### SeguroPaciente (opcional)
+### SeguroPaciente
 
 - `paciente`, `proveedor`, `numero_poliza`, `vigente_hasta`.
 
 ### HistoriaClinica
 
-- `paciente`.
-- Antecedentes estructurados: `antecedentes_familiares`, `antecedentes_personales`, `antecedentes_perinatales`, `alergias`, `padecimientos_cronicos`.
-- Mantenerlo simple al inicio; se puede normalizar después si hace falta.
+- `paciente`, `antecedentes_familiares`, `antecedentes_personales`,
+  `antecedentes_perinatales`, `alergias`, `padecimientos_cronicos`.
 
-## Consulta médica (consultas)
+## Consulta medica (consultas)
 
 ### Consulta
 
-- `paciente`.
-- `fecha_visita`, `motivo_consulta`, `subjetivo`, `evaluacion`, `plan`.
-- `diagnostico_texto` (texto libre) y `diagnostico_codigos` (futuro, si se integra CIE-10).
-- `estatus` (abierta/cerrada) para control de flujo.
+- `paciente`, `fecha_visita`.
+- `motivo_consulta`, `subjetivo`, `evaluacion`, `plan`.
+- `diagnostico_texto`, `diagnostico_codigos`.
+- `estatus` (ABIERTA/CERRADA).
 
 ### ExamenFisico
 
-- Relación 1:1 con `consulta`.
-- Signos vitales y antropometría:
-  - `peso_kg`, `talla_cm`, `perimetro_cefalico_cm`, `temperatura_c`, `frecuencia_cardiaca_lpm`, `frecuencia_respiratoria_rpm`, `presion_sistolica`, `presion_diastolica`, `saturacion_oxigeno_pct`.
-- `notas` para hallazgos clínicos.
+Relacion 1:1 con `consulta`.
 
-Validaciones clínicas sugeridas:
-- `peso_kg` > 0, `talla_cm` > 0 cuando se registra.
-- `temperatura_c` en 30-45 si se captura.
+- Antropometria y signos vitales: `peso_kg`, `talla_cm`, `perimetro_cefalico_cm`,
+  `temperatura_c`, `frecuencia_cardiaca_lpm`, `frecuencia_respiratoria_rpm`,
+  `presion_sistolica`, `presion_diastolica`, `saturacion_oxigeno_pct`.
+- `notas`.
 
-## Exámenes (examenes)
+Validaciones en modelo:
+- `peso_kg` y `talla_cm` > 0 si existen.
+- `temperatura_c` en 30-45 si existe.
 
-### TipoExamen
-
-- Catálogo: `nombre`, `categoria` (laboratorio/gabinete), `codigo` (interno opcional).
-
-### ExamenPaciente
-
-- `paciente` (obligatorio).
-- `consulta` (opcional; si aplica a la consulta actual).
-- `tipo_examen`, `fecha_solicitud`, `fecha_resultado`, `resultado_texto`, `adjunto` (archivo).
-
-## Vacunación (inmunizaciones)
+## Inmunizaciones (inmunizaciones)
 
 ### Vacuna
 
-- Catálogo: `nombre`, `fabricante` (opcional), `codigo` (interno).
+- `nombre`, `fabricante`, `codigo`.
 
 ### EsquemaVacuna
 
-- Define esquema por edad:
-  - `vacuna`, `numero_dosis`, `edad_min_dias`, `edad_max_dias`.
+- `vacuna`, `numero_dosis`, `edad_min_dias`, `edad_max_dias`.
 
 ### VacunacionPaciente
 
-- `paciente`, `vacuna`, `numero_dosis`.
-- `fecha_aplicacion`, `lote`, `sitio`, `notas`.
-- `consulta` (opcional).
+- `paciente`, `vacuna`, `numero_dosis`, `fecha_aplicacion`, `lote`, `sitio`, `notas`.
+- `consulta` opcional.
+
+## Examenes (examenes)
+
+### TipoExamen
+
+- `nombre`, `categoria` (LAB/GAB), `codigo`.
+
+### ExamenPaciente
+
+- `paciente`, `consulta` opcional, `tipo_examen`.
+- `fecha_solicitud`, `fecha_resultado`, `resultado_texto`, `adjunto`.
 
 ## Recetas (recetas)
 
 ### Medicamento
 
-- Catálogo: `nombre`, `forma` (jarabe/tableta/etc), `concentracion`.
+- `nombre`, `forma`, `concentracion`.
 
 ### Receta
 
-- `paciente`, `consulta`, `fecha_prescripcion`.
-- `notas`.
+- `paciente`, `consulta` opcional, `fecha_prescripcion`, `notas`.
 
 ### DetalleReceta
 
-- `receta`, `medicamento`.
-- `dosis`, `frecuencia`, `duracion_dias`, `instrucciones`.
+- `receta`, `medicamento`, `dosis`, `frecuencia`, `duracion_dias`, `instrucciones`.
 
 ## Crecimiento (crecimiento)
 
 ### MedicionCrecimiento
 
-- `paciente`, `consulta` (opcional), `fecha_medicion`.
+- `paciente`, `consulta` opcional, `fecha_medicion`.
 - `peso_kg`, `talla_cm`, `perimetro_cefalico_cm`.
-- `edad_dias` (cronológica), `edad_corregida_dias` (si prematuro).
-- `tipo_edad` (cronológica/corregida) para gráficas.
+- `edad_dias`, `edad_corregida_dias`, `tipo_edad` (CRONO/CORR).
+- Percentiles: `percentil_peso`, `percentil_talla`, `percentil_imc`, `percentil_perimetro`.
 
-### ReferenciaCrecimiento (opcional, para curvas)
+### ReferenciaCrecimiento
 
-- Catálogo para cargar tablas de referencia (OMS/CDC):
-  - `sexo`, `edad_dias`, `metrica` (peso/talla/perimetro_cefalico), `l`, `m`, `s`.
-- Puede poblarse por importación.
+- `sexo`, `edad_dias`, `metrica` (PESO/TALLA/PC), `l`, `m`, `s`.
 
-## Desarrollo infantil (desarrollo)
+## Desarrollo (desarrollo)
 
 ### Hito
 
-- Catálogo: `nombre`, `edad_min_dias`, `edad_max_dias`, `dominio` (motor/lenguaje/social).
+- `nombre`, `edad_min_dias`, `edad_max_dias`, `dominio` (MOTOR/LENGUAJE/SOCIAL/COGNITIVO).
 
 ### HitoPaciente
 
 - `paciente`, `hito`, `fecha_logro`, `notas`.
 
-## Reglas de separación expediente vs consulta
+## Reglas de relacion
 
-- Todo antecedente y datos base vive en `pacientes`.
-- Todo evento puntual y clínico va en `consultas` y sus submódulos.
-- Los módulos `examenes`, `inmunizaciones`, `recetas`, `crecimiento`, `desarrollo` se vinculan a `paciente` y opcionalmente a `consulta`.
+- Todo antecedente y expediente vive en `pacientes`.
+- Todo evento clinico puntual vive en `consultas`.
+- Modulos `examenes`, `inmunizaciones`, `recetas`, `crecimiento`, `desarrollo`
+  se vinculan a `paciente` y opcionalmente a `consulta`.
 
-## Endpoints sugeridos (v1, nivel alto)
+## Endpoints actuales (v1)
 
 - `/api/v1/pacientes/`
+- `/api/v1/pacientes/responsables/`
+- `/api/v1/pacientes/seguros/`
+- `/api/v1/pacientes/historias/`
 - `/api/v1/consultas/`
-- `/api/v1/examenes/`
+- `/api/v1/consultas/examenes-fisicos/`
 - `/api/v1/inmunizaciones/`
+- `/api/v1/inmunizaciones/vacunas/`
+- `/api/v1/inmunizaciones/esquemas/`
+- `/api/v1/examenes/`
+- `/api/v1/examenes/tipos/`
 - `/api/v1/recetas/`
+- `/api/v1/recetas/detalles/`
+- `/api/v1/recetas/medicamentos/`
 - `/api/v1/crecimiento/`
+- `/api/v1/crecimiento/referencias/`
 - `/api/v1/desarrollo/`
+- `/api/v1/desarrollo/hitos/`
 
 ## Siguiente paso recomendado
 
-- Confirmar el alcance del MVP (qué módulos entran primero).
-- Definir los modelos Django iniciales y migraciones para `pacientes` y `consultas`.
-- Agregar borrado lógico estándar en `comun` y aplicar a todos los modelos.
+- Asegurar migraciones para todas las apps y versionarlas en el repo.
+- Definir filtros/ordenamientos para el frontend (por paciente, fecha, estatus).
+- Documentar flujos clinicos principales (alta paciente, consulta, receta).

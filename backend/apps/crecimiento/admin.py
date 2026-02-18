@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import MedicionCrecimiento, ReferenciaCrecimiento
+
+admin.site.register(MedicionCrecimiento)
+admin.site.register(ReferenciaCrecimiento)
