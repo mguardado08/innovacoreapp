@@ -16,7 +16,7 @@ export const useLookup = (config?: LookupConfig) => {
       return;
     }
     const cached = lookupCache.get(config.endpoint);
-    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    if (cached && cached.data.length > 0 && Date.now() - cached.timestamp < CACHE_TTL) {
       setData(cached.data);
       return;
     }

@@ -1,59 +1,61 @@
 # Changelog
 
-Registro de avances del nuevo software y pendientes de ejecucion.
+Registro de avances funcionales y tecnicos del proyecto.
 
 ## 2026-02-20
 
 ### Implementado
 
 - Curvas de crecimiento:
-  - calculo de IMC, Z-score y clasificacion automatica,
+  - calculo IMC/Z-score/clasificacion,
   - endpoint de curvas por paciente,
-  - pantalla dedicada con grafica, tabla longitudinal y captura.
+  - grafica con bandas Z y serie de paciente,
+  - filtros por indicador y por rango de fechas.
 - Consultas:
-  - filtros por paciente, estatus y rango de fechas,
-  - endpoint de historial por paciente (`/api/v1/consultas/historial-paciente/`),
-  - enriquecimiento de respuesta con detalle de examen fisico.
+  - filtros por paciente/estatus/fecha,
+  - endpoint de historial por paciente,
+  - respuesta con detalle de examen fisico.
 - Pacientes:
   - filtros avanzados (`q`, `sexo`, `activo`, `edad_min`, `edad_max`).
 - Frontend transversal:
-  - autosave de borradores en formularios CRUD,
-  - recuperacion de borrador y limpieza manual.
+  - autosave de borradores en formularios CRUD.
+- Dashboard:
+  - metricas reales desde API (sin valores hardcodeados).
+- Fixtures:
+  - catalogos,
+  - pacientes (10 con expediente),
+  - consultas + examen fisico (2 por paciente),
+  - crecimiento referencias LMS,
+  - crecimiento mediciones para 3 indicadores.
 
 ### En progreso
 
-- Fase 1:
-  - consulta guiada por secciones clinicas,
-  - integracion visual del historial de consultas previas dentro de la consulta actual.
-- Fase 2:
-  - cuadricula de vacunas y motor de recomendacion por edad.
-- Fase 3:
-  - curvas prematuro vs normal con reglas clinicas cerradas,
-  - dashboard operativo (agenda del dia + indicadores).
+- Consulta guiada por secciones clinicas.
+- Cuadricula de vacunacion y recomendacion por edad.
+- Dashboard operativo con agenda del dia.
 
 ### Pendiente
 
-- Historial longitudinal de recetas orientado a seguimiento.
-- Escala de desarrollo del nino con cumplimiento por edad.
-- Impresion/PDF de consulta y formatos administrativos.
-- Correos automaticos, recordatorios de cumpleanios y sincronizacion Gmail.
+- Historial longitudinal de recetas dedicado.
+- Escala de desarrollo con semaforo de cumplimiento.
+- Impresion/PDF clinico y formatos administrativos.
+- Correos automaticos y sincronizacion Gmail.
 
-## Observaciones de calidad de requerimientos
+## Observaciones de requerimientos
 
 ### Ambiguo
 
-- "Consultar..." no define modulo, actor ni resultado esperado.
-- "Poner imagenes bonitas por todos lados" no es criterio funcional medible.
-- "Correos automaticos" no especifica eventos, plantillas, frecuencia ni destinatarios.
+- "Consultar..." no define modulo, actor ni salida.
+- "Poner imagenes bonitas" no es criterio funcional medible.
+- "Correos automaticos" requiere definir eventos, destinatarios y frecuencia.
 
 ### Repetido o solapado
 
-- "Agenda en el inicio" y "Agenda en gmail" se solapan parcialmente; se separo en dashboard interno vs sincronizacion externa.
-- "Ingresar examenes a pacientes" y "CONSULTA -> Examenes" apuntan al mismo flujo; se consolidaron como integracion de examenes dentro de consulta.
-- "Consultas no guarda peso y talla" y "CONSULTA -> Datos fisicos" se consolidaron en un solo frente de mejora de captura/visualizacion.
+- Agenda en inicio vs agenda en Gmail: se divide en agenda interna y sincronizacion externa.
+- Examenes en paciente vs examenes en consulta: se consolidara en un flujo integrado.
 
 ## Proxima iteracion sugerida
 
-1. Cerrar Fase 1 con pantalla de consulta guiada y panel de historial previo en la misma vista.
-2. Iniciar Fase 2 con cuadricula de vacunas + estado por edad.
-3. Definir criterios de impresion/PDF (Fase 4) con plantillas aprobadas por cliente.
+1. Cerrar Fase 1 con consulta guiada + historial previo embebido.
+2. Cerrar Fase 2 con cuadricula de vacunas y estado por edad.
+3. Definir plantillas oficiales para impresion/PDF de Fase 4.

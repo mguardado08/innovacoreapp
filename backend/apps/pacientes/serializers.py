@@ -28,18 +28,33 @@ class PacienteSerializer(serializers.ModelSerializer):
 
 
 class ResponsablePacienteSerializer(serializers.ModelSerializer):
+    paciente_nombre = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = ResponsablePaciente
         fields = '__all__'
 
+    def get_paciente_nombre(self, obj):
+        return f'{obj.paciente.apellidos} {obj.paciente.nombres}'.strip()
+
 
 class SeguroPacienteSerializer(serializers.ModelSerializer):
+    paciente_nombre = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = SeguroPaciente
         fields = '__all__'
 
+    def get_paciente_nombre(self, obj):
+        return f'{obj.paciente.apellidos} {obj.paciente.nombres}'.strip()
+
 
 class HistoriaClinicaSerializer(serializers.ModelSerializer):
+    paciente_nombre = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = HistoriaClinica
         fields = '__all__'
+
+    def get_paciente_nombre(self, obj):
+        return f'{obj.paciente.apellidos} {obj.paciente.nombres}'.strip()

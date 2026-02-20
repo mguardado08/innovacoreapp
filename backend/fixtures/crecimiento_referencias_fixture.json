@@ -1,0 +1,410 @@
+[
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 1,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 365,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "16.000",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 2,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 365,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "74.000",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 3,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 365,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "9.500",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 4,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 730,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.650",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 5,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 730,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "81.200",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 6,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 730,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "11.600",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 7,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1095,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.300",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 8,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1095,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "88.400",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 9,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1095,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "13.700",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 10,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1460,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "14.950",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 11,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1460,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "95.600",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 12,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "F",
+      "edad_dias": 1460,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "15.800",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 13,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 365,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "16.045",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 14,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 365,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "74.900",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 15,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 365,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "9.900",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 16,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 730,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.695",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 17,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 730,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "82.100",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 18,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 730,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "12.000",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 19,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1095,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.345",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 20,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1095,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "89.300",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 21,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1095,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "14.100",
+      "s": "0.120"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 22,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1460,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "14.995",
+      "s": "0.100"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 23,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1460,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "96.500",
+      "s": "0.040"
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 24,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "sexo": "M",
+      "edad_dias": 1460,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "16.200",
+      "s": "0.120"
+    }
+  }
+]

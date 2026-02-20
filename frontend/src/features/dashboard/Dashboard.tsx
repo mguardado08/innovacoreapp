@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react';
 import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -6,6 +7,7 @@ import VaccinesIcon from '@mui/icons-material/Vaccines';
 import ScienceIcon from '@mui/icons-material/Science';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import { listResource } from '../../services/api';
 
 const actions = [
   { label: 'Nuevo paciente', path: '/pacientes', icon: <PeopleAltIcon /> },
@@ -16,26 +18,62 @@ const actions = [
   { label: 'Medicion crecimiento', path: '/crecimiento', icon: <ShowChartIcon /> }
 ];
 
-const highlights = [
-  {
-    title: 'Expedientes activos',
-    value: '120',
-    description: 'Pacientes con seguimiento reciente.'
-  },
-  {
-    title: 'Consultas abiertas',
-    value: '18',
-    description: 'Pendientes de cierre o plan.'
-  },
-  {
-    title: 'Vacunas pendientes',
-    value: '7',
-    description: 'Pacientes con esquema incompleto.'
+const parseRows = (response: unknown) => {
+  if (Array.isArray(response)) {
+    return response as Record<string, unknown>[];
   }
-];
+  if (response && typeof response === 'object' && 'results' in response) {
+    return (response as { results: Record<string, unknown>[] }).results ?? [];
+  }
+  return [] as Record<string, unknown>[];
+};
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [patientsCount, setPatientsCount] = useState(0);
+  const [openConsultsCount, setOpenConsultsCount] = useState(0);
+  const [vaccinationsCount, setVaccinationsCount] = useState(0);
+
+  useEffect(() => {
+    const loadMetrics = async () => {
+      try {
+        const [patientsResp, consultsResp, vaccinesResp] = await Promise.all([
+          listResource('/pacientes/', { activo: true }),
+          listResource('/consultas/', { estatus: 'ABIERTA' }),
+          listResource('/inmunizaciones/')
+        ]);
+        setPatientsCount(parseRows(patientsResp).length);
+        setOpenConsultsCount(parseRows(consultsResp).length);
+        setVaccinationsCount(parseRows(vaccinesResp).length);
+      } catch (_err) {
+        setPatientsCount(0);
+        setOpenConsultsCount(0);
+        setVaccinationsCount(0);
+      }
+    };
+    loadMetrics();
+  }, []);
+
+  const highlights = useMemo(
+    () => [
+      {
+        title: 'Expedientes activos',
+        value: String(patientsCount),
+        description: 'Pacientes activos registrados.'
+      },
+      {
+        title: 'Consultas abiertas',
+        value: String(openConsultsCount),
+        description: 'Pendientes de cierre o plan.'
+      },
+      {
+        title: 'Vacunas aplicadas',
+        value: String(vaccinationsCount),
+        description: 'Aplicaciones registradas en el sistema.'
+      }
+    ],
+    [patientsCount, openConsultsCount, vaccinationsCount]
+  );
 
   return (
     <Box>

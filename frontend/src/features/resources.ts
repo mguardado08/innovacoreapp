@@ -98,7 +98,11 @@ export const resources: Record<string, ResourceConfig> = {
     endpoint: '/pacientes/responsables/',
     description: 'Responsables asociados a cada paciente.',
     columns: [
-      { field: 'paciente', header: 'Paciente' },
+      {
+        field: 'paciente_nombre',
+        header: 'Paciente',
+        format: (value, row) => String(value ?? row.paciente ?? '-')
+      },
       { field: 'nombre_completo', header: 'Nombre' },
       { field: 'parentesco', header: 'Parentesco' },
       { field: 'telefono', header: 'Telefono' }
@@ -138,7 +142,11 @@ export const resources: Record<string, ResourceConfig> = {
     endpoint: '/pacientes/seguros/',
     description: 'Seguro medico asociado a pacientes.',
     columns: [
-      { field: 'paciente', header: 'Paciente' },
+      {
+        field: 'paciente_nombre',
+        header: 'Paciente',
+        format: (value, row) => String(value ?? row.paciente ?? '-')
+      },
       { field: 'proveedor', header: 'Proveedor' },
       { field: 'numero_poliza', header: 'Poliza' },
       { field: 'vigente_hasta', header: 'Vigente hasta', format: (value) => formatDate(String(value)) }
@@ -157,7 +165,11 @@ export const resources: Record<string, ResourceConfig> = {
     endpoint: '/pacientes/historias/',
     description: 'Antecedentes clinicos del paciente.',
     columns: [
-      { field: 'paciente', header: 'Paciente' },
+      {
+        field: 'paciente_nombre',
+        header: 'Paciente',
+        format: (value, row) => String(value ?? row.paciente ?? '-')
+      },
       { field: 'antecedentes_familiares', header: 'Familiares' },
       { field: 'alergias', header: 'Alergias' }
     ],

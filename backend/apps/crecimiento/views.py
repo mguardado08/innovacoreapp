@@ -15,10 +15,16 @@ class MedicionCrecimientoViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         paciente = self.request.query_params.get('paciente')
         indicador = self.request.query_params.get('indicador')
+        fecha_desde = self.request.query_params.get('fecha_desde')
+        fecha_hasta = self.request.query_params.get('fecha_hasta')
         if paciente:
             queryset = queryset.filter(paciente_id=paciente)
         if indicador:
             queryset = queryset.filter(indicador=indicador)
+        if fecha_desde:
+            queryset = queryset.filter(fecha_medicion__gte=fecha_desde)
+        if fecha_hasta:
+            queryset = queryset.filter(fecha_medicion__lte=fecha_hasta)
         return queryset.select_related('paciente')
 
     @action(detail=False, methods=['get'], url_path='chart-data')

@@ -1,0 +1,762 @@
+[
+  {
+    "model": "pacientes.paciente",
+    "pk": 1001,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Mateo",
+      "apellidos": "Garcia",
+      "sexo": "M",
+      "fecha_nacimiento": "2021-03-15",
+      "curp": "GARM210315HDFXXX01",
+      "tipo_sangre": "O+",
+      "semanas_gestacionales": 38,
+      "peso_nacimiento_g": 3100,
+      "talla_nacimiento_cm": "50.00",
+      "perimetro_cefalico_nacimiento_cm": "34.00",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1002,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Valentina",
+      "apellidos": "Lopez",
+      "sexo": "F",
+      "fecha_nacimiento": "2020-11-02",
+      "curp": "LOPV201102MDFXXX02",
+      "tipo_sangre": "A+",
+      "semanas_gestacionales": 39,
+      "peso_nacimiento_g": 2950,
+      "talla_nacimiento_cm": "49.00",
+      "perimetro_cefalico_nacimiento_cm": "33.50",
+      "tipo_parto": "CESAREA",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1003,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Sofia",
+      "apellidos": "Hernandez",
+      "sexo": "F",
+      "fecha_nacimiento": "2022-07-20",
+      "curp": "HEHS220720MDFXXX03",
+      "tipo_sangre": "B+",
+      "semanas_gestacionales": 35,
+      "peso_nacimiento_g": 2400,
+      "talla_nacimiento_cm": "46.00",
+      "perimetro_cefalico_nacimiento_cm": "31.50",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 7,
+      "apgar_5": 8,
+      "es_prematuro": true,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1004,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Diego",
+      "apellidos": "Ruiz",
+      "sexo": "M",
+      "fecha_nacimiento": "2019-09-10",
+      "curp": "RUID190910HDFXXX04",
+      "tipo_sangre": "O-",
+      "semanas_gestacionales": 40,
+      "peso_nacimiento_g": 3300,
+      "talla_nacimiento_cm": "51.00",
+      "perimetro_cefalico_nacimiento_cm": "35.00",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 9,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1005,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Camila",
+      "apellidos": "Santos",
+      "sexo": "F",
+      "fecha_nacimiento": "2018-04-01",
+      "curp": "SACM180401MDFXXX05",
+      "tipo_sangre": "AB+",
+      "semanas_gestacionales": 39,
+      "peso_nacimiento_g": 3000,
+      "talla_nacimiento_cm": "49.50",
+      "perimetro_cefalico_nacimiento_cm": "34.20",
+      "tipo_parto": "CESAREA",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1006,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Emiliano",
+      "apellidos": "Torres",
+      "sexo": "M",
+      "fecha_nacimiento": "2023-01-12",
+      "curp": "TOEM230112HDFXXX06",
+      "tipo_sangre": "A-",
+      "semanas_gestacionales": 36,
+      "peso_nacimiento_g": 2550,
+      "talla_nacimiento_cm": "47.00",
+      "perimetro_cefalico_nacimiento_cm": "32.00",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 7,
+      "apgar_5": 8,
+      "es_prematuro": true,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1007,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Renata",
+      "apellidos": "Mendoza",
+      "sexo": "F",
+      "fecha_nacimiento": "2017-06-22",
+      "curp": "MERN170622MDFXXX07",
+      "tipo_sangre": "B-",
+      "semanas_gestacionales": 38,
+      "peso_nacimiento_g": 2890,
+      "talla_nacimiento_cm": "48.00",
+      "perimetro_cefalico_nacimiento_cm": "33.00",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1008,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Leonardo",
+      "apellidos": "Castillo",
+      "sexo": "M",
+      "fecha_nacimiento": "2016-12-30",
+      "curp": "CALE161230HDFXXX08",
+      "tipo_sangre": "O+",
+      "semanas_gestacionales": 39,
+      "peso_nacimiento_g": 3150,
+      "talla_nacimiento_cm": "50.00",
+      "perimetro_cefalico_nacimiento_cm": "34.00",
+      "tipo_parto": "CESAREA",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1009,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Lucia",
+      "apellidos": "Navarro",
+      "sexo": "F",
+      "fecha_nacimiento": "2015-08-18",
+      "curp": "NALU150818MDFXXX09",
+      "tipo_sangre": "A+",
+      "semanas_gestacionales": 40,
+      "peso_nacimiento_g": 3200,
+      "talla_nacimiento_cm": "50.50",
+      "perimetro_cefalico_nacimiento_cm": "34.80",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 9,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.paciente",
+    "pk": 1010,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "nombres": "Santiago",
+      "apellidos": "Vega",
+      "sexo": "M",
+      "fecha_nacimiento": "2024-02-05",
+      "curp": "VESA240205HDFXXX10",
+      "tipo_sangre": "O+",
+      "semanas_gestacionales": 37,
+      "peso_nacimiento_g": 2800,
+      "talla_nacimiento_cm": "48.00",
+      "perimetro_cefalico_nacimiento_cm": "33.20",
+      "tipo_parto": "VAGINAL",
+      "apgar_1": 8,
+      "apgar_5": 9,
+      "es_prematuro": false,
+      "activo": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3001,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1001,
+      "nombre_completo": "Laura Martinez",
+      "parentesco": "MADRE",
+      "telefono": "5551001001",
+      "correo": "laura.martinez@example.com",
+      "direccion": "Calle Uno 123, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3002,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1002,
+      "nombre_completo": "Carlos Lopez",
+      "parentesco": "PADRE",
+      "telefono": "5551001002",
+      "correo": "carlos.lopez@example.com",
+      "direccion": "Calle Dos 456, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3003,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1003,
+      "nombre_completo": "Maria Hernandez",
+      "parentesco": "MADRE",
+      "telefono": "5551001003",
+      "correo": "maria.hernandez@example.com",
+      "direccion": "Calle Tres 789, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3004,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1004,
+      "nombre_completo": "Jose Ruiz",
+      "parentesco": "PADRE",
+      "telefono": "5551001004",
+      "correo": "jose.ruiz@example.com",
+      "direccion": "Calle Cuatro 101, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3005,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1005,
+      "nombre_completo": "Ana Santos",
+      "parentesco": "MADRE",
+      "telefono": "5551001005",
+      "correo": "ana.santos@example.com",
+      "direccion": "Calle Cinco 102, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3006,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1006,
+      "nombre_completo": "Luis Torres",
+      "parentesco": "PADRE",
+      "telefono": "5551001006",
+      "correo": "luis.torres@example.com",
+      "direccion": "Calle Seis 103, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3007,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1007,
+      "nombre_completo": "Paola Mendoza",
+      "parentesco": "MADRE",
+      "telefono": "5551001007",
+      "correo": "paola.mendoza@example.com",
+      "direccion": "Calle Siete 104, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3008,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1008,
+      "nombre_completo": "Rocio Castillo",
+      "parentesco": "MADRE",
+      "telefono": "5551001008",
+      "correo": "rocio.castillo@example.com",
+      "direccion": "Calle Ocho 105, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3009,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1009,
+      "nombre_completo": "David Navarro",
+      "parentesco": "PADRE",
+      "telefono": "5551001009",
+      "correo": "david.navarro@example.com",
+      "direccion": "Calle Nueve 106, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.responsablepaciente",
+    "pk": 3010,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1010,
+      "nombre_completo": "Karla Vega",
+      "parentesco": "MADRE",
+      "telefono": "5551001010",
+      "correo": "karla.vega@example.com",
+      "direccion": "Calle Diez 107, CDMX",
+      "es_principal": true
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4001,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1001,
+      "proveedor": "Seguro Infantil Plus",
+      "numero_poliza": "POL-1001-A",
+      "vigente_hasta": "2027-12-31"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4002,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1002,
+      "proveedor": "Seguro Medico Familiar",
+      "numero_poliza": "POL-1002-B",
+      "vigente_hasta": "2027-10-15"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4003,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1003,
+      "proveedor": "Seguro Prematuro Care",
+      "numero_poliza": "POL-1003-C",
+      "vigente_hasta": "2027-08-20"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4004,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1004,
+      "proveedor": "Seguro Infantil Plus",
+      "numero_poliza": "POL-1004-D",
+      "vigente_hasta": "2027-07-31"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4005,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1005,
+      "proveedor": "Seguro Medico Familiar",
+      "numero_poliza": "POL-1005-E",
+      "vigente_hasta": "2027-11-30"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4006,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1006,
+      "proveedor": "Seguro Prematuro Care",
+      "numero_poliza": "POL-1006-F",
+      "vigente_hasta": "2027-09-15"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4007,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1007,
+      "proveedor": "Seguro Infantil Plus",
+      "numero_poliza": "POL-1007-G",
+      "vigente_hasta": "2027-06-30"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4008,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1008,
+      "proveedor": "Seguro Medico Familiar",
+      "numero_poliza": "POL-1008-H",
+      "vigente_hasta": "2027-10-05"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4009,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1009,
+      "proveedor": "Seguro Infantil Plus",
+      "numero_poliza": "POL-1009-I",
+      "vigente_hasta": "2027-12-01"
+    }
+  },
+  {
+    "model": "pacientes.seguropaciente",
+    "pk": 4010,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1010,
+      "proveedor": "Seguro Medico Familiar",
+      "numero_poliza": "POL-1010-J",
+      "vigente_hasta": "2027-05-20"
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2001,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1001,
+      "antecedentes_familiares": "Padre con asma infantil.",
+      "antecedentes_personales": "Sin hospitalizaciones previas.",
+      "antecedentes_perinatales": "Embarazo normoevolutivo.",
+      "alergias": "Sin alergias conocidas.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2002,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1002,
+      "antecedentes_familiares": "Madre con rinitis alergica.",
+      "antecedentes_personales": "Dermatitis atopica leve.",
+      "antecedentes_perinatales": "Cesarea por indicacion obstetrica.",
+      "alergias": "Alergia estacional.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2003,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1003,
+      "antecedentes_familiares": "Padre con baja talla en infancia.",
+      "antecedentes_personales": "Seguimiento por prematurez.",
+      "antecedentes_perinatales": "Nacimiento pretermino 35 semanas.",
+      "alergias": "Ninguna.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2004,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1004,
+      "antecedentes_familiares": "Abuelo con hipertension.",
+      "antecedentes_personales": "Adenoidectomia previa.",
+      "antecedentes_perinatales": "Embarazo de termino.",
+      "alergias": "Sin alergias.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2005,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1005,
+      "antecedentes_familiares": "Madre con hipotiroidismo.",
+      "antecedentes_personales": "Rinitis alergica.",
+      "antecedentes_perinatales": "Parto por cesarea programada.",
+      "alergias": "Alergia a polvo.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2006,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1006,
+      "antecedentes_familiares": "Padre con asma.",
+      "antecedentes_personales": "Control por prematurez tardia.",
+      "antecedentes_perinatales": "Ruptura prematura de membranas.",
+      "alergias": "Sin alergias conocidas.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2007,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1007,
+      "antecedentes_familiares": "Antecedente de diabetes en abuela.",
+      "antecedentes_personales": "Sin antecedentes relevantes.",
+      "antecedentes_perinatales": "Embarazo normoevolutivo.",
+      "alergias": "Sin alergias.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2008,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1008,
+      "antecedentes_familiares": "Padre con obesidad.",
+      "antecedentes_personales": "Sobrepeso en seguimiento.",
+      "antecedentes_perinatales": "Cesarea por distocia.",
+      "alergias": "Sin alergias.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2009,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1009,
+      "antecedentes_familiares": "Madre con migrana.",
+      "antecedentes_personales": "Uso de lentes por miopia.",
+      "antecedentes_perinatales": "Parto vaginal sin complicaciones.",
+      "alergias": "Alergia estacional leve.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  },
+  {
+    "model": "pacientes.historiaclinica",
+    "pk": 2010,
+    "fields": {
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null,
+      "paciente": 1010,
+      "antecedentes_familiares": "Padre con rinitis.",
+      "antecedentes_personales": "Sin antecedentes relevantes.",
+      "antecedentes_perinatales": "Embarazo controlado.",
+      "alergias": "Sin alergias.",
+      "padecimientos_cronicos": "Ninguno."
+    }
+  }
+]

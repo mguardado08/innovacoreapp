@@ -1,7 +1,7 @@
 # Backend API (Django + DRF)
 
-Este backend expone una API REST para el dominio clinico pediatrico. Esta pensada
-como base del frontend y como fuente unica de datos.
+Este backend expone una API REST para el dominio clinico pediatrico.
+Es la fuente unica de datos para frontend y pruebas funcionales.
 
 ## Tecnologias
 
@@ -19,6 +19,9 @@ como base del frontend y como fuente unica de datos.
 CRUD completo via `ModelViewSet` en estas rutas:
 
 - Pacientes: `/api/v1/pacientes/`
+- Responsables: `/api/v1/pacientes/responsables/`
+- Seguros: `/api/v1/pacientes/seguros/`
+- Historia clinica: `/api/v1/pacientes/historias/`
 - Consultas: `/api/v1/consultas/`
 - Examen fisico: `/api/v1/consultas/examenes-fisicos/`
 - Inmunizaciones: `/api/v1/inmunizaciones/`
@@ -33,9 +36,26 @@ CRUD completo via `ModelViewSet` en estas rutas:
 - Referencias crecimiento: `/api/v1/crecimiento/referencias/`
 - Desarrollo: `/api/v1/desarrollo/`
 - Hitos catalogo: `/api/v1/desarrollo/hitos/`
-- Responsables: `/api/v1/pacientes/responsables/`
-- Seguros: `/api/v1/pacientes/seguros/`
-- Historia clinica: `/api/v1/pacientes/historias/`
+
+## Endpoints funcionales adicionales
+
+- Historial de consultas por paciente:
+  - `GET /api/v1/consultas/historial-paciente/?paciente=<id>`
+- Datos de grafica de crecimiento:
+  - `GET /api/v1/crecimiento/chart-data/?paciente=<id>&indicador=<IMC_EDAD|TALLA_EDAD|PESO_EDAD>`
+
+## Filtros soportados actualmente
+
+- Pacientes (`/api/v1/pacientes/`):
+  - `q`, `sexo`, `activo`, `edad_min`, `edad_max`
+- Consultas (`/api/v1/consultas/`):
+  - `paciente`, `estatus`, `fecha_desde`, `fecha_hasta`
+- Examenes fisicos (`/api/v1/consultas/examenes-fisicos/`):
+  - `consulta`, `paciente`
+- Crecimiento (`/api/v1/crecimiento/`):
+  - `paciente`, `indicador`, `fecha_desde`, `fecha_hasta`
+- Referencias crecimiento (`/api/v1/crecimiento/referencias/`):
+  - `sexo`, `metrica`
 
 ## Convenciones de datos
 
@@ -45,21 +65,26 @@ CRUD completo via `ModelViewSet` en estas rutas:
 - Relaciones se manejan por IDs (FK en payload).
 - Fechas: `DateField` (AAAA-MM-DD). Fechas con hora: `DateTimeField`.
 
-## Flujo sugerido para el frontend
+## Fixtures de prueba
 
-1) Alta de paciente en `/api/v1/pacientes/`.
-2) Crear consulta en `/api/v1/consultas/` apuntando al paciente.
-3) Registrar examen fisico en `/api/v1/consultas/examenes-fisicos/`.
-4) Asociar vacunas, examenes o recetas vinculadas a la consulta.
-5) Registrar mediciones de crecimiento y/o hitos de desarrollo.
+Ubicacion:
+- `backend/fixtures/catalogos_fixture.json`
+- `backend/fixtures/pacientes_fixture.json`
+- `backend/fixtures/consultas_fixture.json`
+- `backend/fixtures/crecimiento_referencias_fixture.json`
+- `backend/fixtures/crecimiento_mediciones_fixture.json`
+
+Carga recomendada:
+
+```bash
+docker compose exec -T backend python manage.py loaddata fixtures/catalogos_fixture.json
+docker compose exec -T backend python manage.py loaddata fixtures/pacientes_fixture.json
+docker compose exec -T backend python manage.py loaddata fixtures/consultas_fixture.json
+docker compose exec -T backend python manage.py loaddata fixtures/crecimiento_referencias_fixture.json
+docker compose exec -T backend python manage.py loaddata fixtures/crecimiento_mediciones_fixture.json
+```
 
 ## Autenticacion
 
-Actualmente no hay autenticacion configurada. Si se agrega, la capa de frontend
+Actualmente no hay autenticacion configurada. Si se agrega, el frontend
 podra incorporar manejo de sesiones/tokens y permisos por rol.
-
-## Notas para el frontend
-
-- El backend no expone endpoints anidados por paciente; el filtrado por paciente
-  se debe implementar con filtros o consultas del lado del backend.
-- Para explorar el esquema y los campos exactos, usar `/api/docs/`.

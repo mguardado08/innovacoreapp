@@ -1,0 +1,432 @@
+[
+  {
+    "model": "inmunizaciones.vacuna",
+    "pk": 1,
+    "fields": {
+      "nombre": "BCG",
+      "fabricante": "Biofarma",
+      "codigo": "VAC-BCG-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.vacuna",
+    "pk": 2,
+    "fields": {
+      "nombre": "Hepatitis B",
+      "fabricante": "Sanofi",
+      "codigo": "VAC-HEPB-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.vacuna",
+    "pk": 3,
+    "fields": {
+      "nombre": "Pentavalente",
+      "fabricante": "Pfizer",
+      "codigo": "VAC-PENTA-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.esquemavacuna",
+    "pk": 1,
+    "fields": {
+      "vacuna": 1,
+      "numero_dosis": 1,
+      "edad_min_dias": 0,
+      "edad_max_dias": 30,
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.esquemavacuna",
+    "pk": 2,
+    "fields": {
+      "vacuna": 2,
+      "numero_dosis": 1,
+      "edad_min_dias": 0,
+      "edad_max_dias": 30,
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.esquemavacuna",
+    "pk": 3,
+    "fields": {
+      "vacuna": 3,
+      "numero_dosis": 1,
+      "edad_min_dias": 60,
+      "edad_max_dias": 90,
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "inmunizaciones.esquemavacuna",
+    "pk": 4,
+    "fields": {
+      "vacuna": 3,
+      "numero_dosis": 2,
+      "edad_min_dias": 120,
+      "edad_max_dias": 150,
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "examenes.tipoexamen",
+    "pk": 1,
+    "fields": {
+      "nombre": "Biometria hematica",
+      "categoria": "LAB",
+      "codigo": "LAB-BH-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "examenes.tipoexamen",
+    "pk": 2,
+    "fields": {
+      "nombre": "Quimica sanguinea",
+      "categoria": "LAB",
+      "codigo": "LAB-QS-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "examenes.tipoexamen",
+    "pk": 3,
+    "fields": {
+      "nombre": "Radiografia torax",
+      "categoria": "GAB",
+      "codigo": "GAB-RTX-001",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "recetas.medicamento",
+    "pk": 1,
+    "fields": {
+      "nombre": "Paracetamol",
+      "forma": "Jarabe",
+      "concentracion": "160mg/5ml",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "recetas.medicamento",
+    "pk": 2,
+    "fields": {
+      "nombre": "Amoxicilina",
+      "forma": "Suspension",
+      "concentracion": "250mg/5ml",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "recetas.medicamento",
+    "pk": 3,
+    "fields": {
+      "nombre": "Ibuprofeno",
+      "forma": "Suspension",
+      "concentracion": "100mg/5ml",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "recetas.medicamento",
+    "pk": 4,
+    "fields": {
+      "nombre": "Loratadina",
+      "forma": "Jarabe",
+      "concentracion": "5mg/5ml",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "desarrollo.hito",
+    "pk": 1,
+    "fields": {
+      "nombre": "Sonrisa social",
+      "edad_min_dias": 45,
+      "edad_max_dias": 90,
+      "dominio": "SOCIAL",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "desarrollo.hito",
+    "pk": 2,
+    "fields": {
+      "nombre": "Sostiene la cabeza",
+      "edad_min_dias": 60,
+      "edad_max_dias": 120,
+      "dominio": "MOTOR",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "desarrollo.hito",
+    "pk": 3,
+    "fields": {
+      "nombre": "Balbucea",
+      "edad_min_dias": 150,
+      "edad_max_dias": 240,
+      "dominio": "LENGUAJE",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "desarrollo.hito",
+    "pk": 4,
+    "fields": {
+      "nombre": "Reconoce su nombre",
+      "edad_min_dias": 240,
+      "edad_max_dias": 360,
+      "dominio": "COGNITIVO",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 1,
+    "fields": {
+      "sexo": "F",
+      "edad_dias": 365,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "16.000",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 2,
+    "fields": {
+      "sexo": "F",
+      "edad_dias": 730,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.700",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 3,
+    "fields": {
+      "sexo": "F",
+      "edad_dias": 1095,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.500",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 4,
+    "fields": {
+      "sexo": "F",
+      "edad_dias": 1460,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "100.000",
+      "s": "0.040",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 5,
+    "fields": {
+      "sexo": "F",
+      "edad_dias": 1460,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "16.000",
+      "s": "0.120",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 6,
+    "fields": {
+      "sexo": "M",
+      "edad_dias": 365,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "16.200",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 7,
+    "fields": {
+      "sexo": "M",
+      "edad_dias": 730,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.900",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 8,
+    "fields": {
+      "sexo": "M",
+      "edad_dias": 1095,
+      "metrica": "IMC",
+      "l": "1.000",
+      "m": "15.600",
+      "s": "0.100",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 9,
+    "fields": {
+      "sexo": "M",
+      "edad_dias": 1460,
+      "metrica": "TALLA",
+      "l": "1.000",
+      "m": "102.000",
+      "s": "0.040",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  },
+  {
+    "model": "crecimiento.referenciacrecimiento",
+    "pk": 10,
+    "fields": {
+      "sexo": "M",
+      "edad_dias": 1460,
+      "metrica": "PESO",
+      "l": "1.000",
+      "m": "16.700",
+      "s": "0.120",
+      "creado_en": "2026-02-20T00:00:00Z",
+      "actualizado_en": "2026-02-20T00:00:00Z",
+      "esta_borrado": false,
+      "borrado_en": null,
+      "borrado_por": null
+    }
+  }
+]

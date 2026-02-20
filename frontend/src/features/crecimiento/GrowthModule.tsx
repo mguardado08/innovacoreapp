@@ -69,6 +69,8 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
   const [selectedIndicator, setSelectedIndicator] = useState('IMC_EDAD');
   const [rows, setRows] = useState<Medicion[]>([]);
   const [chartData, setChartData] = useState<ChartPayload>({ patient_series: [], curves: [] });
+  const [fechaDesde, setFechaDesde] = useState('');
+  const [fechaHasta, setFechaHasta] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [formValues, setFormValues] = useState({
@@ -94,12 +96,14 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
         ? consultasResp
         : (consultasResp as { results?: Record<string, unknown>[] }).results ?? [];
 
-      setPacientes(
-        pacientesRows.map((item) => ({
-          id: Number(item.id),
-          nombre: `${item.apellidos ?? ''} ${item.nombres ?? ''}`.trim()
-        }))
-      );
+      const mappedPatients = pacientesRows.map((item) => ({
+        id: Number(item.id),
+        nombre: `${item.apellidos ?? ''} ${item.nombres ?? ''}`.trim()
+      }));
+      setPacientes(mappedPatients);
+      if (!fixedPatientId && selectedPatient === '' && mappedPatients.length > 0) {
+        setSelectedPatient(mappedPatients[0].id);
+      }
       setConsultas(
         consultasRows.map((item) => ({
           id: Number(item.id),
@@ -120,11 +124,15 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
       const [medicionesResp, chartResp] = await Promise.all([
         listResource('/crecimiento/', {
           paciente: Number(selectedPatient),
-          indicador: selectedIndicator
+          indicador: selectedIndicator,
+          fecha_desde: fechaDesde || undefined,
+          fecha_hasta: fechaHasta || undefined
         }),
         listResource('/crecimiento/chart-data/', {
           paciente: Number(selectedPatient),
-          indicador: selectedIndicator
+          indicador: selectedIndicator,
+          fecha_desde: fechaDesde || undefined,
+          fecha_hasta: fechaHasta || undefined
         })
       ]);
       const mediciones = Array.isArray(medicionesResp)
@@ -150,7 +158,7 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
 
   useEffect(() => {
     loadGrowth();
-  }, [selectedPatient, selectedIndicator]);
+  }, [selectedPatient, selectedIndicator, fechaDesde, fechaHasta]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -246,6 +254,42 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
             <Typography>{summary}</Typography>
           </Paper>
         </Grid>
+        <Grid item xs={12} md={3}>
+          <TextField
+            type="date"
+            fullWidth
+            label="Fecha desde"
+            InputLabelProps={{ shrink: true }}
+            value={fechaDesde}
+            onChange={(event) => setFechaDesde(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <TextField
+            type="date"
+            fullWidth
+            label="Fecha hasta"
+            InputLabelProps={{ shrink: true }}
+            value={fechaHasta}
+            onChange={(event) => setFechaHasta(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Stack direction="row" spacing={1.5}>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setFechaDesde('');
+                setFechaHasta('');
+              }}
+            >
+              Limpiar filtros de fecha
+            </Button>
+            <Button variant="outlined" startIcon={<RefreshIcon />} onClick={loadGrowth}>
+              Recalcular
+            </Button>
+          </Stack>
+        </Grid>
       </Grid>
 
       <Paper component="form" onSubmit={handleSubmit} sx={{ p: 3, mb: 3 }}>
@@ -329,11 +373,15 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
         curves={chartData.curves}
         patientSeries={chartData.patient_series}
         unitLabel={unitByIndicator[selectedIndicator] ?? 'valor'}
+        indicatorLabel={indicatorLabels[selectedIndicator] ?? selectedIndicator}
       />
 
       <Paper sx={{ p: 2, mt: 3 }}>
         <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
           Historico longitudinal
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Mostrando {rows.length} mediciones para {indicatorLabels[selectedIndicator] ?? selectedIndicator}.
         </Typography>
         <Table size="small">
           <TableHead>

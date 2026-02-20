@@ -17,6 +17,7 @@ type GrowthChartProps = {
   curves: CurvePoint[];
   patientSeries: PatientPoint[];
   unitLabel: string;
+  indicatorLabel: string;
 };
 
 const pad = 28;
@@ -48,7 +49,7 @@ const mapToPoints = (
     })
     .join(' ');
 
-const GrowthChart = ({ curves, patientSeries, unitLabel }: GrowthChartProps) => {
+const GrowthChart = ({ curves, patientSeries, unitLabel, indicatorLabel }: GrowthChartProps) => {
   if (curves.length === 0 && patientSeries.length === 0) {
     return (
       <Paper sx={{ p: 3 }}>
@@ -76,17 +77,48 @@ const GrowthChart = ({ curves, patientSeries, unitLabel }: GrowthChartProps) => 
   const maxX = Math.max(...xValues);
   const minY = Math.min(...yValues);
   const maxY = Math.max(...yValues);
+  const latestPoint = patientSeries[patientSeries.length - 1];
+
+  const yTickValues = [0, 0.25, 0.5, 0.75, 1].map((step) => minY + (maxY - minY) * step);
+  const xTickValues = [0, 0.25, 0.5, 0.75, 1].map((step) => Math.round(minX + (maxX - minX) * step));
 
   return (
     <Paper sx={{ p: 2 }}>
       <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
         Curva de crecimiento
       </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        Indicador: {indicatorLabel}
+      </Typography>
       <Box sx={{ overflowX: 'auto' }}>
         <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', minWidth: 760 }}>
           <rect x={0} y={0} width={width} height={height} fill="#fff" />
           <line x1={pad} y1={height - pad} x2={width - pad} y2={height - pad} stroke="#c8c8c8" />
           <line x1={pad} y1={pad} x2={pad} y2={height - pad} stroke="#c8c8c8" />
+
+          {yTickValues.map((tick) => {
+            const y = height - pad - ((tick - minY) / (maxY - minY || 1)) * (height - pad * 2);
+            return (
+              <g key={`ytick-${tick}`}>
+                <line x1={pad} y1={y} x2={width - pad} y2={y} stroke="#efefef" strokeDasharray="3 3" />
+                <text x={4} y={y + 4} fill="#757575" fontSize="11">
+                  {tick.toFixed(1)}
+                </text>
+              </g>
+            );
+          })}
+
+          {xTickValues.map((tick) => {
+            const x = pad + ((tick - minX) / (maxX - minX || 1)) * (width - pad * 2);
+            return (
+              <g key={`xtick-${tick}`}>
+                <line x1={x} y1={pad} x2={x} y2={height - pad} stroke="#f2f2f2" strokeDasharray="3 3" />
+                <text x={x - 12} y={height - 10} fill="#757575" fontSize="11">
+                  {Math.round(tick / 30.4)}m
+                </text>
+              </g>
+            );
+          })}
 
           {Object.keys(lineColors).map((key) => {
             const points = curves
@@ -146,6 +178,20 @@ const GrowthChart = ({ curves, patientSeries, unitLabel }: GrowthChartProps) => 
           </text>
         </svg>
       </Box>
+      <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+        {Object.entries(lineColors).map(([key, color]) => (
+          <Box key={key} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            <Box sx={{ width: 12, height: 12, borderRadius: '50%', backgroundColor: color }} />
+            <Typography variant="caption">Z {key.replace('z_', '')}</Typography>
+          </Box>
+        ))}
+      </Box>
+      {latestPoint && (
+        <Typography variant="body2" sx={{ mt: 1 }} color="text.secondary">
+          Ultimo punto: {latestPoint.valor} {unitLabel} | Edad {latestPoint.edad_dias} dias | Z{' '}
+          {latestPoint.z_score ?? '-'} | {latestPoint.clasificacion || 'Sin clasificacion'}
+        </Typography>
+      )}
     </Paper>
   );
 };
