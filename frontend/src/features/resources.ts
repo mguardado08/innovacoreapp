@@ -29,6 +29,30 @@ export const resources: Record<string, ResourceConfig> = {
       { field: 'activo', header: 'Activo' }
     ],
     rowLink: (row) => (row.id ? `/pacientes/${row.id}` : undefined),
+    filters: [
+      { name: 'q', label: 'Nombre/CURP', type: 'text' },
+      {
+        name: 'sexo',
+        label: 'Sexo',
+        type: 'select',
+        options: [
+          { label: 'Masculino', value: 'M' },
+          { label: 'Femenino', value: 'F' },
+          { label: 'Otro', value: 'X' }
+        ]
+      },
+      {
+        name: 'activo',
+        label: 'Estado',
+        type: 'select',
+        options: [
+          { label: 'Activos', value: 'true' },
+          { label: 'Inactivos', value: 'false' }
+        ]
+      },
+      { name: 'edad_min', label: 'Edad minima', type: 'number' },
+      { name: 'edad_max', label: 'Edad maxima', type: 'number' }
+    ],
     fields: [
       { name: 'nombres', label: 'Nombres', type: 'text', required: true },
       { name: 'apellidos', label: 'Apellidos', type: 'text', required: true },
@@ -153,9 +177,25 @@ export const resources: Record<string, ResourceConfig> = {
     endpoint: '/consultas/',
     description: 'Consultas medicas registradas.',
     columns: [
-      { field: 'paciente', header: 'Paciente' },
+      {
+        field: 'paciente_nombre',
+        header: 'Paciente',
+        format: (value, row) => String(value ?? row.paciente ?? '-')
+      },
       { field: 'fecha_visita', header: 'Fecha', format: (value) => formatDateTime(String(value)) },
       { field: 'estatus', header: 'Estatus' },
+      {
+        field: 'peso_kg',
+        header: 'Peso (kg)',
+        format: (_value, row) =>
+          String((row.examen_fisico_detalle as Record<string, unknown> | null)?.peso_kg ?? '-')
+      },
+      {
+        field: 'talla_cm',
+        header: 'Talla (cm)',
+        format: (_value, row) =>
+          String((row.examen_fisico_detalle as Record<string, unknown> | null)?.talla_cm ?? '-')
+      },
       { field: 'diagnostico_texto', header: 'Diagnostico' }
     ],
     filters: [
@@ -168,7 +208,9 @@ export const resources: Record<string, ResourceConfig> = {
           { label: 'Abierta', value: 'ABIERTA' },
           { label: 'Cerrada', value: 'CERRADA' }
         ]
-      }
+      },
+      { name: 'fecha_desde', label: 'Fecha desde', type: 'date' },
+      { name: 'fecha_hasta', label: 'Fecha hasta', type: 'date' }
     ],
     fields: [
       { name: 'paciente', label: 'Paciente', type: 'select', lookup: pacienteLookup },

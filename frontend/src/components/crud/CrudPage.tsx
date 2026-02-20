@@ -52,6 +52,12 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
   const [filters, setFilters] = useState<Record<string, unknown>>({});
   const [search, setSearch] = useState('');
   const [alert, setAlert] = useState<string | null>(null);
+  const [draftRecovered, setDraftRecovered] = useState(false);
+
+  const draftKey = useMemo(() => {
+    const fixedFiltersKey = JSON.stringify(fixedFilters ?? {});
+    return `innovacore:draft:${resource.endpoint}:${fixedFiltersKey}`;
+  }, [resource.endpoint, fixedFilters]);
 
   const loadData = async () => {
     setLoading(true);
@@ -73,6 +79,33 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
     loadData();
   }, [resource.endpoint]);
 
+  useEffect(() => {
+    if (!openForm) {
+      return;
+    }
+    if (editing) {
+      return;
+    }
+    const raw = window.localStorage.getItem(draftKey);
+    if (!raw) {
+      return;
+    }
+    try {
+      const saved = JSON.parse(raw) as Record<string, unknown>;
+      setFormValues((prev) => ({ ...prev, ...saved }));
+      setDraftRecovered(true);
+    } catch (_err) {
+      window.localStorage.removeItem(draftKey);
+    }
+  }, [openForm, editing, draftKey]);
+
+  useEffect(() => {
+    if (!openForm || editing) {
+      return;
+    }
+    window.localStorage.setItem(draftKey, JSON.stringify(formValues));
+  }, [formValues, openForm, editing, draftKey]);
+
   const filteredRows = useMemo(() => {
     if (!search.trim() || resource.clientSearch === false) {
       return rows;
@@ -85,12 +118,14 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
     const defaultValues = { ...(resource.defaultValues ?? {}), ...(fixedFilters ?? {}) };
     setFormValues(defaultValues);
     setEditing(null);
+    setDraftRecovered(false);
     setOpenForm(true);
   };
 
   const handleEdit = (row: Record<string, unknown>) => {
     setEditing(row);
     setFormValues({ ...row });
+    setDraftRecovered(false);
     setOpenForm(true);
   };
 
@@ -105,6 +140,7 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
         await updateResource(resource.endpoint, editing.id as string | number, formValues);
       } else {
         await createResource(resource.endpoint, { ...formValues, ...(fixedFilters ?? {}) });
+        window.localStorage.removeItem(draftKey);
       }
       setOpenForm(false);
       await loadData();
@@ -228,6 +264,11 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
       <Dialog open={openForm} onClose={() => setOpenForm(false)} maxWidth="md" fullWidth>
         <DialogTitle>{editing ? `Editar ${resource.label}` : `Nuevo ${resource.label}`}</DialogTitle>
         <DialogContent>
+          {draftRecovered && !editing && (
+            <Alert severity="info" sx={{ mb: 2 }} onClose={() => setDraftRecovered(false)}>
+              Se recupero un borrador local de este formulario.
+            </Alert>
+          )}
           {alert && (
             <Alert severity="error" sx={{ mb: 2 }}>
               {alert}
@@ -246,7 +287,26 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenForm(false)}>Cancelar</Button>
+          <Button
+            onClick={() => {
+              setOpenForm(false);
+              setDraftRecovered(false);
+            }}
+          >
+            Cancelar
+          </Button>
+          {!editing && (
+            <Button
+              color="inherit"
+              onClick={() => {
+                window.localStorage.removeItem(draftKey);
+                setFormValues({ ...(resource.defaultValues ?? {}), ...(fixedFilters ?? {}) });
+                setDraftRecovered(false);
+              }}
+            >
+              Limpiar borrador
+            </Button>
+          )}
           <Button variant="contained" onClick={handleSubmit}>
             Guardar
           </Button>

@@ -11,6 +11,11 @@ class MedicionCrecimiento(ModeloBaseClinico):
         CRONOLOGICA = 'CRONO', 'Cronologica'
         CORREGIDA = 'CORR', 'Corregida'
 
+    class Indicador(models.TextChoices):
+        PESO_EDAD = 'PESO_EDAD', 'Peso para la edad'
+        TALLA_EDAD = 'TALLA_EDAD', 'Talla para la edad'
+        IMC_EDAD = 'IMC_EDAD', 'IMC para la edad'
+
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='mediciones')
     consulta = models.ForeignKey(
         Consulta, on_delete=models.SET_NULL, null=True, blank=True, related_name='mediciones'
@@ -50,6 +55,14 @@ class MedicionCrecimiento(ModeloBaseClinico):
         blank=True,
         validators=[MinValueValidator(0), MaxValueValidator(100)],
     )
+    imc = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    indicador = models.CharField(
+        max_length=16,
+        choices=Indicador.choices,
+        default=Indicador.TALLA_EDAD,
+    )
+    z_score = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True)
+    clasificacion = models.CharField(max_length=60, blank=True)
 
     class Meta:
         ordering = ['-fecha_medicion']
@@ -68,6 +81,7 @@ class ReferenciaCrecimiento(ModeloBaseClinico):
         PESO = 'PESO', 'Peso'
         TALLA = 'TALLA', 'Talla'
         PERIMETRO = 'PC', 'Perimetro cefalico'
+        IMC = 'IMC', 'Indice de masa corporal'
 
     sexo = models.CharField(max_length=1, choices=Sexo.choices)
     edad_dias = models.PositiveIntegerField(validators=[MinValueValidator(0)])

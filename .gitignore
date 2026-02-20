@@ -13,3 +13,7 @@ env/
 # Archivos del sistema/IDE que no aportan al codigo
 .DS_Store
 .vscode/
+
+# Artefactos frontend
+frontend/node_modules/
+frontend/dist/

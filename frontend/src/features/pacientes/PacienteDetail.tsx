@@ -18,6 +18,7 @@ import CrudPage from '../../components/crud/CrudPage';
 import { listResource } from '../../services/api';
 import { resources } from '../resources';
 import { formatDate } from '../../utils/format';
+import GrowthModule from '../crecimiento/GrowthModule';
 
 const TabPanel = ({ children, value, index }: { children: JSX.Element; value: number; index: number }) => (
   <Box role="tabpanel" hidden={value !== index} sx={{ mt: 3 }}>
@@ -171,12 +172,7 @@ const PacienteDetail = () => {
         />
       </TabPanel>
       <TabPanel value={tab} index={7}>
-        <CrudPage
-          embedded
-          titleOverride="Crecimiento"
-          resource={resources.crecimiento}
-          fixedFilters={{ paciente: Number(id) }}
-        />
+        <GrowthModule embedded fixedPatientId={Number(id)} />
       </TabPanel>
       <TabPanel value={tab} index={8}>
         <CrudPage

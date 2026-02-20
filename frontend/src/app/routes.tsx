@@ -5,6 +5,7 @@ import Dashboard from '../features/dashboard/Dashboard';
 import ResourcePage from '../features/ResourcePage';
 import { resources } from '../features/resources';
 import PacienteDetail from '../features/pacientes/PacienteDetail';
+import GrowthModule from '../features/crecimiento/GrowthModule';
 
 const NotFound = () => (
   <Box>
@@ -47,7 +48,7 @@ const AppRoutes = () => (
       path="/recetas/medicamentos"
       element={<ResourcePage resource={resources.medicamentos} />}
     />
-    <Route path="/crecimiento" element={<ResourcePage resource={resources.crecimiento} />} />
+    <Route path="/crecimiento" element={<GrowthModule />} />
     <Route
       path="/crecimiento/referencias"
       element={<ResourcePage resource={resources.referenciasCrecimiento} />}
