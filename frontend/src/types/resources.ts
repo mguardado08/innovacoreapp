@@ -13,6 +13,7 @@ export type LookupConfig = {
   labelKey?: string;
   labelFn?: (item: Record<string, unknown>) => string;
   valueKey?: string;
+  params?: Record<string, string | number | boolean | undefined>;
 };
 
 export type FieldConfig = {

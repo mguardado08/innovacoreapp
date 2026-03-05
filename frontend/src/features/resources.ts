@@ -188,6 +188,9 @@ export const resources: Record<string, ResourceConfig> = {
     label: 'Consulta',
     endpoint: '/consultas/',
     description: 'Consultas medicas registradas.',
+    defaultValues: {
+      estatus: 'ABIERTA'
+    },
     columns: [
       {
         field: 'paciente_nombre',
@@ -211,16 +214,6 @@ export const resources: Record<string, ResourceConfig> = {
       { field: 'diagnostico_texto', header: 'Diagnostico' }
     ],
     filters: [
-      { name: 'paciente', label: 'Paciente', type: 'select', lookup: pacienteLookup },
-      {
-        name: 'estatus',
-        label: 'Estatus',
-        type: 'select',
-        options: [
-          { label: 'Abierta', value: 'ABIERTA' },
-          { label: 'Cerrada', value: 'CERRADA' }
-        ]
-      },
       { name: 'fecha_desde', label: 'Fecha desde', type: 'date' },
       { name: 'fecha_hasta', label: 'Fecha hasta', type: 'date' }
     ],

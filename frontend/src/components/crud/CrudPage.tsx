@@ -59,12 +59,23 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
     return `innovacore:draft:${resource.endpoint}:${fixedFiltersKey}`;
   }, [resource.endpoint, fixedFilters]);
 
-  const loadData = async () => {
+  const fixedFormValues = useMemo(() => {
+    if (!fixedFilters) {
+      return {};
+    }
+    const allowedFields = new Set(resource.fields.map((field) => field.name));
+    return Object.fromEntries(
+      Object.entries(fixedFilters).filter(([key]) => allowedFields.has(key))
+    );
+  }, [fixedFilters, resource.fields]);
+
+  const loadData = async (activeFilters?: Record<string, unknown>) => {
     setLoading(true);
     try {
+      const resolvedFilters = activeFilters ?? filters;
       const response = await listResource(resource.endpoint, {
         ...(fixedFilters ?? {}),
-        ...filters
+        ...resolvedFilters
       } as Record<string, string | number | boolean | undefined>);
       setRows(parseRows(response));
       setError(null);
@@ -115,7 +126,7 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
   }, [rows, search, resource.clientSearch]);
 
   const handleOpenCreate = () => {
-    const defaultValues = { ...(resource.defaultValues ?? {}), ...(fixedFilters ?? {}) };
+    const defaultValues = { ...(resource.defaultValues ?? {}), ...fixedFormValues };
     setFormValues(defaultValues);
     setEditing(null);
     setDraftRecovered(false);
@@ -139,7 +150,7 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
       if (editing && editing.id) {
         await updateResource(resource.endpoint, editing.id as string | number, formValues);
       } else {
-        await createResource(resource.endpoint, { ...formValues, ...(fixedFilters ?? {}) });
+        await createResource(resource.endpoint, { ...formValues, ...fixedFormValues });
         window.localStorage.removeItem(draftKey);
       }
       setOpenForm(false);
@@ -207,13 +218,14 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
             ))}
           </Grid>
           <Stack direction="row" spacing={2}>
-            <Button variant="outlined" onClick={loadData}>
+            <Button variant="outlined" onClick={() => loadData(filters)}>
               Aplicar filtros
             </Button>
             <Button
               onClick={() => {
-                setFilters({});
-                loadData();
+                const clearedFilters = {};
+                setFilters(clearedFilters);
+                loadData(clearedFilters);
               }}
             >
               Limpiar
@@ -300,7 +312,7 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
               color="inherit"
               onClick={() => {
                 window.localStorage.removeItem(draftKey);
-                setFormValues({ ...(resource.defaultValues ?? {}), ...(fixedFilters ?? {}) });
+                setFormValues({ ...(resource.defaultValues ?? {}), ...fixedFormValues });
                 setDraftRecovered(false);
               }}
             >

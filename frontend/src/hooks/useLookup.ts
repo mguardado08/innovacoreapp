@@ -15,16 +15,17 @@ export const useLookup = (config?: LookupConfig) => {
     if (!config) {
       return;
     }
-    const cached = lookupCache.get(config.endpoint);
+    const cacheKey = `${config.endpoint}:${JSON.stringify(config.params ?? {})}`;
+    const cached = lookupCache.get(cacheKey);
     if (cached && cached.data.length > 0 && Date.now() - cached.timestamp < CACHE_TTL) {
       setData(cached.data);
       return;
     }
     setLoading(true);
-    listResource(config.endpoint)
+    listResource(config.endpoint, config.params)
       .then((response) => {
         const items = Array.isArray(response) ? response : response.results ?? [];
-        lookupCache.set(config.endpoint, { data: items, timestamp: Date.now() });
+        lookupCache.set(cacheKey, { data: items, timestamp: Date.now() });
         setData(items);
         setError(null);
       })

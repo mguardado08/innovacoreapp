@@ -42,40 +42,45 @@ export const navSections: NavSection[] = [
     ]
   },
   {
+    label: 'Crecimiento',
+    items: [
+      { label: 'Mediciones', path: '/crecimiento', icon: <ShowChartIcon /> }
+    ]
+  },
+  {
+    label: 'Desarrollo',
+    items: [
+      { label: 'Hitos por paciente', path: '/desarrollo', icon: <ChildCareIcon /> }
+    ]
+  },
+  {
     label: 'Inmunizaciones',
     items: [
-      { label: 'Aplicaciones', path: '/inmunizaciones', icon: <VaccinesIcon /> },
-      { label: 'Vacunas', path: '/inmunizaciones/vacunas', icon: <VaccinesIcon /> },
-      { label: 'Esquemas', path: '/inmunizaciones/esquemas', icon: <ManageSearchIcon /> }
+      { label: 'Aplicaciones', path: '/inmunizaciones', icon: <VaccinesIcon /> }
     ]
   },
   {
     label: 'Examenes',
     items: [
-      { label: 'Examenes', path: '/examenes', icon: <ScienceIcon /> },
-      { label: 'Tipos de examen', path: '/examenes/tipos', icon: <ManageSearchIcon /> }
+      { label: 'Examenes', path: '/examenes', icon: <ScienceIcon /> }
     ]
   },
   {
     label: 'Recetas',
     items: [
       { label: 'Recetas', path: '/recetas', icon: <ReceiptLongIcon /> },
-      { label: 'Detalles de receta', path: '/recetas/detalles', icon: <ManageSearchIcon /> },
-      { label: 'Medicamentos', path: '/recetas/medicamentos', icon: <ManageSearchIcon /> }
+      { label: 'Detalles de receta', path: '/recetas/detalles', icon: <ManageSearchIcon /> }
     ]
   },
   {
-    label: 'Crecimiento',
+    label: 'Catalogos',
     items: [
-      { label: 'Mediciones', path: '/crecimiento', icon: <ShowChartIcon /> },
-      { label: 'Referencias', path: '/crecimiento/referencias', icon: <ManageSearchIcon /> }
-    ]
-  },
-  {
-    label: 'Desarrollo',
-    items: [
-      { label: 'Hitos por paciente', path: '/desarrollo', icon: <ChildCareIcon /> },
-      { label: 'Catalogo de hitos', path: '/desarrollo/hitos', icon: <ManageSearchIcon /> }
+      { label: 'Vacunas', path: '/inmunizaciones/vacunas', icon: <VaccinesIcon /> },
+      { label: 'Esquemas', path: '/inmunizaciones/esquemas', icon: <ManageSearchIcon /> },
+      { label: 'Tipos de examen', path: '/examenes/tipos', icon: <ManageSearchIcon /> },
+      { label: 'Medicamentos', path: '/recetas/medicamentos', icon: <ManageSearchIcon /> },
+      { label: 'Referencias crecimiento', path: '/crecimiento/referencias', icon: <ManageSearchIcon /> },
+      { label: 'Hitos', path: '/desarrollo/hitos', icon: <ManageSearchIcon /> }
     ]
   }
 ];

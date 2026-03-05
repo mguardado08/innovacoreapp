@@ -6,6 +6,7 @@ import ResourcePage from '../features/ResourcePage';
 import { resources } from '../features/resources';
 import PacienteDetail from '../features/pacientes/PacienteDetail';
 import GrowthModule from '../features/crecimiento/GrowthModule';
+import ConsultasWorkspace from '../features/consultas/ConsultasWorkspace';
 
 const NotFound = () => (
   <Box>
@@ -26,11 +27,8 @@ const AppRoutes = () => (
     <Route path="/pacientes/responsables" element={<ResourcePage resource={resources.responsables} />} />
     <Route path="/pacientes/seguros" element={<ResourcePage resource={resources.seguros} />} />
     <Route path="/pacientes/historias" element={<ResourcePage resource={resources.historias} />} />
-    <Route path="/consultas" element={<ResourcePage resource={resources.consultas} />} />
-    <Route
-      path="/consultas/examenes-fisicos"
-      element={<ResourcePage resource={resources.examenesFisicos} />}
-    />
+    <Route path="/consultas" element={<ConsultasWorkspace mode="consultas" />} />
+    <Route path="/consultas/examenes-fisicos" element={<ConsultasWorkspace mode="examenesFisicos" />} />
     <Route path="/inmunizaciones" element={<ResourcePage resource={resources.inmunizaciones} />} />
     <Route
       path="/inmunizaciones/vacunas"
