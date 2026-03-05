@@ -77,37 +77,43 @@ const Dashboard = () => {
 
   return (
     <Box>
-      <Card
-        sx={{
-          mb: 4,
-          overflow: 'hidden',
-          background: 'linear-gradient(120deg, #0F4C5C 0%, #1B6B6F 50%, #2C7A7B 100%)',
-          color: '#fff'
-        }}
-      >
-        <CardContent sx={{ p: { xs: 3, md: 5 } }}>
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
-            Centro clinico pediatrico
-          </Typography>
-          <Typography variant="h6" sx={{ opacity: 0.85, maxWidth: 600 }}>
-            Gestiona pacientes, consultas y seguimiento integral con herramientas enfocadas en
-            bienestar pediatrico.
-          </Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 3 }}>
-            <Button variant="contained" color="secondary" onClick={() => navigate('/pacientes')}>
-              Registrar paciente
-            </Button>
-            <Button variant="outlined" onClick={() => navigate('/consultas')} sx={{ color: '#fff' }}>
-              Ver consultas
-            </Button>
-          </Stack>
-        </CardContent>
-      </Card>
+      <Box sx={{ mb: 5, pt: { xs: 2, md: 4 }, textAlign: 'center' }}>
+        <Typography variant="h2" sx={{ fontWeight: 700, mb: 1 }}>
+          Centro clinico pediatrico
+        </Typography>
+        <Typography
+          variant="h5"
+          sx={{ color: 'text.secondary', maxWidth: 860, mx: 'auto', lineHeight: 1.35 }}
+        >
+          Gestiona pacientes, consultas y seguimiento integral con herramientas enfocadas en
+          bienestar pediatrico.
+        </Typography>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          sx={{ mt: 3, justifyContent: 'center' }}
+        >
+          <Button variant="contained" color="secondary" onClick={() => navigate('/pacientes')}>
+            Registrar paciente
+          </Button>
+          <Button variant="contained" onClick={() => navigate('/consultas')}>
+            Ver consultas
+          </Button>
+        </Stack>
+      </Box>
 
       <Grid container spacing={3} sx={{ mb: 4 }}>
         {highlights.map((item) => (
           <Grid item xs={12} md={4} key={item.title}>
-            <Card sx={{ height: '100%' }}>
+            <Card
+              sx={{
+                height: '100%',
+                backgroundColor: 'rgba(255, 255, 255, 0.84)',
+                border: '1px solid rgba(15, 76, 92, 0.10)',
+                boxShadow: '0 8px 22px rgba(22, 53, 71, 0.08)',
+                backdropFilter: 'blur(2px)'
+              }}
+            >
               <CardContent>
                 <Typography variant="overline" color="text.secondary">
                   {item.title}
@@ -122,7 +128,7 @@ const Dashboard = () => {
         ))}
       </Grid>
 
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+      <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
         Acciones rapidas
       </Typography>
       <Grid container spacing={2}>
@@ -132,8 +138,15 @@ const Dashboard = () => {
               onClick={() => navigate(action.path)}
               sx={{
                 cursor: 'pointer',
-                transition: 'transform 0.2s ease',
-                '&:hover': { transform: 'translateY(-4px)' }
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                backgroundColor: 'rgba(255, 255, 255, 0.84)',
+                border: '1px solid rgba(15, 76, 92, 0.10)',
+                boxShadow: '0 8px 22px rgba(22, 53, 71, 0.08)',
+                backdropFilter: 'blur(2px)',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 12px 28px rgba(22, 53, 71, 0.12)'
+                }
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

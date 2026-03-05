@@ -17,6 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { navSections } from '../../app/nav';
+import bg1 from '../../assets/bg1.jpg';
 
 const drawerWidth = 280;
 
@@ -93,9 +94,28 @@ const AppShell = ({ children }: AppShellProps) => {
           ))}
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          position: 'relative',
+          backgroundImage: `url(${bg1})`,
+          backgroundPosition: 'center top',
+          backgroundSize: '100% auto',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: 'rgba(248, 251, 253, 0.52)',
+            pointerEvents: 'none'
+          }
+        }}
+      >
         <Toolbar />
-        <Container maxWidth="xl" sx={{ pb: 4 }}>
+        <Container maxWidth="xl" sx={{ pb: 4, position: 'relative', zIndex: 1 }}>
           {children}
         </Container>
       </Box>
