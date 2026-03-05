@@ -7,6 +7,7 @@ import { resources } from '../features/resources';
 import PacienteDetail from '../features/pacientes/PacienteDetail';
 import GrowthModule from '../features/crecimiento/GrowthModule';
 import ConsultasWorkspace from '../features/consultas/ConsultasWorkspace';
+import PatientScopedResourcePage from '../features/PatientScopedResourcePage';
 
 const NotFound = () => (
   <Box>
@@ -29,7 +30,10 @@ const AppRoutes = () => (
     <Route path="/pacientes/historias" element={<ResourcePage resource={resources.historias} />} />
     <Route path="/consultas" element={<ConsultasWorkspace mode="consultas" />} />
     <Route path="/consultas/examenes-fisicos" element={<ConsultasWorkspace mode="examenesFisicos" />} />
-    <Route path="/inmunizaciones" element={<ResourcePage resource={resources.inmunizaciones} />} />
+    <Route
+      path="/inmunizaciones"
+      element={<PatientScopedResourcePage resource={resources.inmunizaciones} filterConsultaLookup />}
+    />
     <Route
       path="/inmunizaciones/vacunas"
       element={<ResourcePage resource={resources.vacunas} />}
@@ -51,7 +55,10 @@ const AppRoutes = () => (
       path="/crecimiento/referencias"
       element={<ResourcePage resource={resources.referenciasCrecimiento} />}
     />
-    <Route path="/desarrollo" element={<ResourcePage resource={resources.desarrollo} />} />
+    <Route
+      path="/desarrollo"
+      element={<PatientScopedResourcePage resource={resources.desarrollo} />}
+    />
     <Route path="/desarrollo/hitos" element={<ResourcePage resource={resources.hitos} />} />
     <Route path="*" element={<NotFound />} />
   </Routes>

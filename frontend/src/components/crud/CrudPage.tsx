@@ -38,9 +38,16 @@ type CrudPageProps = {
   embedded?: boolean;
   fixedFilters?: Record<string, string | number>;
   titleOverride?: string;
+  onCreateRequest?: () => void;
 };
 
-const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageProps) => {
+const CrudPage = ({
+  resource,
+  embedded,
+  fixedFilters,
+  titleOverride,
+  onCreateRequest
+}: CrudPageProps) => {
   const navigate = useNavigate();
   const [rows, setRows] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(false);
@@ -126,6 +133,10 @@ const CrudPage = ({ resource, embedded, fixedFilters, titleOverride }: CrudPageP
   }, [rows, search, resource.clientSearch]);
 
   const handleOpenCreate = () => {
+    if (onCreateRequest) {
+      onCreateRequest();
+      return;
+    }
     const defaultValues = { ...(resource.defaultValues ?? {}), ...fixedFormValues };
     setFormValues(defaultValues);
     setEditing(null);

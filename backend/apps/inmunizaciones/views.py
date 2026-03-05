@@ -17,3 +17,10 @@ class EsquemaVacunaViewSet(viewsets.ModelViewSet):
 class VacunacionPacienteViewSet(viewsets.ModelViewSet):
     queryset = VacunacionPaciente.objects.all()
     serializer_class = VacunacionPacienteSerializer
+
+    def get_queryset(self):
+        queryset = self.queryset.select_related('paciente', 'vacuna', 'consulta')
+        paciente = self.request.query_params.get('paciente')
+        if paciente:
+            queryset = queryset.filter(paciente_id=paciente)
+        return queryset

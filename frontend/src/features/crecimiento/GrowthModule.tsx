@@ -3,6 +3,8 @@ import {
   Alert,
   Box,
   Button,
+  Card,
+  CardContent,
   Grid,
   MenuItem,
   Paper,
@@ -21,6 +23,7 @@ import PageHeader from '../../components/common/PageHeader';
 import { createResource, listResource } from '../../services/api';
 import { formatDate } from '../../utils/format';
 import GrowthChart from './GrowthChart';
+import { persistPatientSelection, readStoredPatientSelection } from '../patientSelection';
 
 type GrowthModuleProps = {
   embedded?: boolean;
@@ -65,7 +68,9 @@ const unitByIndicator: Record<string, string> = {
 const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) => {
   const [pacientes, setPacientes] = useState<{ id: number; nombre: string }[]>([]);
   const [consultas, setConsultas] = useState<{ id: number; label: string }[]>([]);
-  const [selectedPatient, setSelectedPatient] = useState<number | ''>(fixedPatientId ?? '');
+  const [selectedPatient, setSelectedPatient] = useState<number | ''>(
+    fixedPatientId ?? readStoredPatientSelection()
+  );
   const [selectedIndicator, setSelectedIndicator] = useState('IMC_EDAD');
   const [rows, setRows] = useState<Medicion[]>([]);
   const [chartData, setChartData] = useState<ChartPayload>({ patient_series: [], curves: [] });
@@ -83,36 +88,40 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
 
   const canLoad = selectedPatient !== '';
 
-  const loadLookups = async () => {
+  const loadPacientes = async () => {
     try {
-      const [pacientesResp, consultasResp] = await Promise.all([
-        listResource('/pacientes/'),
-        listResource('/consultas/')
-      ]);
+      const pacientesResp = await listResource('/pacientes/');
       const pacientesRows = Array.isArray(pacientesResp)
         ? pacientesResp
         : (pacientesResp as { results?: Record<string, unknown>[] }).results ?? [];
-      const consultasRows = Array.isArray(consultasResp)
-        ? consultasResp
-        : (consultasResp as { results?: Record<string, unknown>[] }).results ?? [];
 
       const mappedPatients = pacientesRows.map((item) => ({
         id: Number(item.id),
         nombre: `${item.apellidos ?? ''} ${item.nombres ?? ''}`.trim()
       }));
       setPacientes(mappedPatients);
-      if (!fixedPatientId && selectedPatient === '' && mappedPatients.length > 0) {
-        setSelectedPatient(mappedPatients[0].id);
-      }
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudieron cargar catalogos');
+    }
+  };
+
+  const loadConsultas = async () => {
+    try {
+      const consultasResp = await listResource('/consultas/', {
+        paciente: selectedPatient || undefined
+      });
+      const consultasRows = Array.isArray(consultasResp)
+        ? consultasResp
+        : (consultasResp as { results?: Record<string, unknown>[] }).results ?? [];
       setConsultas(
         consultasRows.map((item) => ({
           id: Number(item.id),
           label: `Consulta ${item.id} - ${String(item.fecha_visita ?? '').slice(0, 10)}`
         }))
       );
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'No se pudieron cargar catalogos');
+    } catch (_err) {
+      setConsultas([]);
     }
   };
 
@@ -147,14 +156,19 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
   };
 
   useEffect(() => {
-    loadLookups();
+    loadPacientes();
   }, []);
 
   useEffect(() => {
     if (fixedPatientId) {
       setSelectedPatient(fixedPatientId);
+      persistPatientSelection(fixedPatientId);
     }
   }, [fixedPatientId]);
+
+  useEffect(() => {
+    loadConsultas();
+  }, [selectedPatient]);
 
   useEffect(() => {
     loadGrowth();
@@ -191,6 +205,25 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
     return `Ultima medicion ${formatDate(last.fecha_medicion)} | Z-score ${last.z_score ?? '-'} | ${last.clasificacion || 'Sin clasificacion'}`;
   }, [rows]);
 
+  const selectedPatientLabel = useMemo(
+    () => pacientes.find((item) => item.id === Number(selectedPatient))?.nombre ?? '',
+    [pacientes, selectedPatient]
+  );
+
+  const handlePatientChange = (value: string) => {
+    if (!value) {
+      setSelectedPatient('');
+      persistPatientSelection('');
+      return;
+    }
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed) || parsed <= 0) {
+      return;
+    }
+    setSelectedPatient(parsed);
+    persistPatientSelection(parsed);
+  };
+
   return (
     <Box>
       {!embedded && (
@@ -211,23 +244,53 @@ const GrowthModule = ({ embedded = false, fixedPatientId }: GrowthModuleProps) =
         </Alert>
       )}
 
+      <Card sx={{ mb: 3, backgroundColor: 'rgba(255, 255, 255, 0.88)' }}>
+        <CardContent>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} alignItems={{ md: 'center' }}>
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
+                Selecciona paciente
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Esta seleccion se reutiliza en los modulos clinicos.
+              </Typography>
+            </Box>
+            <TextField
+              select
+              size="small"
+              label="Paciente preseleccionado"
+              value={selectedPatient === '' ? '' : String(selectedPatient)}
+              onChange={(event) => handlePatientChange(event.target.value)}
+              disabled={Boolean(fixedPatientId)}
+              sx={{ minWidth: { xs: '100%', md: 360 } }}
+            >
+              {!fixedPatientId && <MenuItem value="">Sin preseleccion</MenuItem>}
+              {pacientes.map((paciente) => (
+                <MenuItem key={paciente.id} value={paciente.id}>
+                  {paciente.nombre}
+                </MenuItem>
+              ))}
+            </TextField>
+            {!fixedPatientId && selectedPatient !== '' && (
+              <Button variant="outlined" onClick={() => handlePatientChange('')}>
+                Quitar preseleccion
+              </Button>
+            )}
+          </Stack>
+          {selectedPatient !== '' && (
+            <Alert severity="success" sx={{ mt: 2 }}>
+              Paciente seleccionado: {selectedPatientLabel || `ID ${selectedPatient}`}.
+            </Alert>
+          )}
+          {selectedPatient === '' && (
+            <Alert severity="info" sx={{ mt: 2 }}>
+              Sin paciente preseleccionado. Selecciona uno para cargar sus mediciones.
+            </Alert>
+          )}
+        </CardContent>
+      </Card>
+
       <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid item xs={12} md={4}>
-          <TextField
-            select
-            fullWidth
-            label="Paciente"
-            value={selectedPatient}
-            onChange={(event) => setSelectedPatient(Number(event.target.value))}
-            disabled={Boolean(fixedPatientId)}
-          >
-            {pacientes.map((paciente) => (
-              <MenuItem key={paciente.id} value={paciente.id}>
-                {paciente.nombre}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Grid>
         <Grid item xs={12} md={4}>
           <TextField
             select
